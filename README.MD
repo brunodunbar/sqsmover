@@ -15,15 +15,15 @@ were successfully un-queued to the destination.
 On macOS, Linux, or OpenBSD run the following:
 
 ```
-curl https://raw.githubusercontent.com/mercury2269/sqsmover/master/install.sh | sh
+curl https://raw.githubusercontent.com/brunodunbar/sqsmover/master/install.sh | sh
 ```
 
 Note that you may need to run the `sudo` version below, or alternatively chown `/usr/local`:
 ```
-curl https://raw.githubusercontent.com/mercury2269/sqsmover/master/install.sh | sudo sh
+curl https://raw.githubusercontent.com/brunodunbar/sqsmover/master/install.sh | sudo sh
 ```
 
-On Windows download [binary](https://github.com/mercury2269/sqsmover/releases).
+On Windows download [binary](https://github.com/brunodunbar/sqsmover/releases).
 
 After downloading, rename binary file 'sqsmover.exe', then add to PATH.
 
