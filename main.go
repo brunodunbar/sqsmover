@@ -107,8 +107,9 @@ func convertToEntries(messages []*sqs.Message) []*sqs.SendMessageBatchRequestEnt
 	result := make([]*sqs.SendMessageBatchRequestEntry, len(messages))
 	for i, message := range messages {
 		result[i] = &sqs.SendMessageBatchRequestEntry{
-			MessageBody: message.Body,
-			Id:          message.MessageId,
+			MessageBody:       message.Body,
+			Id:                message.MessageId,
+			MessageAttributes: message.MessageAttributes,
 		}
 	}
 
@@ -129,10 +130,11 @@ func convertSuccessfulMessageToBatchRequestEntry(messages []*sqs.Message) []*sqs
 
 func moveMessages(sourceQueueUrl string, destinationQueueUrl string, svc *sqs.SQS, numberOfMessages int) {
 	params := &sqs.ReceiveMessageInput{
-		QueueUrl:            aws.String(sourceQueueUrl),
-		VisibilityTimeout:   aws.Int64(2),
-		WaitTimeSeconds:     aws.Int64(0),
-		MaxNumberOfMessages: aws.Int64(10),
+		QueueUrl:              aws.String(sourceQueueUrl),
+		VisibilityTimeout:     aws.Int64(2),
+		WaitTimeSeconds:       aws.Int64(0),
+		MaxNumberOfMessages:   aws.Int64(10),
+		MessageAttributeNames: aws.StringSlice([]string{"All"}),
 	}
 
 	log.Info(color.New(color.FgCyan).Sprintf("Starting to move messages..."))
